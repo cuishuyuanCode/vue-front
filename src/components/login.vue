@@ -1,8 +1,13 @@
 
 <template>
+  <div>
   <div class="login">
     <h1>登录</h1>
   </div>
+  <div>
+    <el-input v-model="input">dd</el-input>
+  </div>
+</div>
 </template>
 
 <script>
