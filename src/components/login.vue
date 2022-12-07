@@ -1,10 +1,8 @@
 
 <template>
-  <div>
-  <div class="login">
+  <div class="form">
     <h1>登录</h1>
-  </div>
-  <div class="sss">
+  <div class="account">
     <el-input v-model="input" placeholder="请输入用户名" width="50px">dd</el-input>
     <el-input v-model="input" placeholder="请输入密码">dd</el-input>
     <div>
@@ -28,17 +26,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+.login{
+  color: red;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.form{
+  background-color: yellow;
+  align-content: center;
+  align-items: center;
 }
-sss {
-  color: black;
-}
-a {
-  color: black;
+
+.account{
+  align-items: center;
+  background-color: red;
+  align-content: center;
+  width: 30%;
+  padding-top: 5%;
 }
 </style>
