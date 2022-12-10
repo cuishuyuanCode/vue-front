@@ -1,10 +1,15 @@
 <template>
+  <div class="main">
     <div class="login-container">
-      <h1>登录</h1>
+      <h2>试验课程预约登录</h2>
       <input type="text" placeholder="用户名" v-model="username">
       <input type="password" placeholder="密码" v-model="password">
-      <button @click="login">登录</button>
+      <div>
+        <button @click="login">登录</button>
+        <button @click="registry">注册</button>
+      </div>
     </div>
+  </div>
 </template>
 <script>
 export default {
@@ -17,12 +22,16 @@ export default {
   methods: {
     login () {
       // 登录逻辑
+      // print(this.data.username)
+    },
+    registry () {
+      // 注册逻辑
+      this.$router.repleace({path: '/register.vue'})
     }
   }
 }
 </script>
 <style scoped>
-
 .login-container {
   display: flex;
   flex-direction: column;
@@ -31,8 +40,9 @@ export default {
   /* padding-bottom: 10%; */
   /* padding-top: 0%; */
   width: 100%;
+  height: 100vh;
   /* background-image:url(../assets/school.png); */
-  background: linear-gradient(to right, #7f00ff, #e100ff);
+  background: linear-gradient(to right, #00ddff, #008cff);
   color: #fff;
 }
 
@@ -53,7 +63,7 @@ export default {
 }
 
 .login-container button {
-  width: 300px;
+  width: 100px;
   height: 40px;
   padding: 0 10px;
   margin-bottom: 1rem;
