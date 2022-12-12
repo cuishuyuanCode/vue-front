@@ -12,7 +12,7 @@
         <el-input type="password" v-model="ruleForm.password_confirm" placeholder="请再输入一次密码"></el-input>
       </el-form-item>
       <el-form-item label="性别" prop="sex">
-        <el-select v-model="ruleForm.region" placeholder="请选择性别">
+        <el-select v-model="ruleForm.sex" placeholder="请选择性别">
           <el-option label="男" value="man"></el-option>
           <el-option label="女" value="woman"></el-option>
         </el-select>
@@ -26,6 +26,7 @@
 
 </template>
 <script>
+ import {registryUser1} from '../api/api.js'
     export default {
         data() {
             return {
@@ -38,17 +39,17 @@
                 rules: {
                     username: [
                         {required: true, message: '请输入姓名', trigger: 'blur'},
-                        {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                        {min: 3, max: 16, message: '长度在 3 到 16 个字符', trigger: 'blur'}
                     ],
                     password: [
                         {required: true, message: '请输入密码', trigger: 'blur'},
-                        {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                        {min: 6, max: 16, message: '长度在 6 到 16 个字符', trigger: 'blur'}
                     ],
                     password_confirm:[
-                        {required: true, message: '请输入密码', trigger: 'blur'},
-                        {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                        {required: true, message: '请重复确认密码', trigger: 'blur'},
+                        {min: 6, max: 16, message: '长度在 3 到 5 个字符', trigger: 'blur'}
                     ],
-                    region: [
+                    sex: [
                         {required: true, message: '请选择性别', trigger: 'change'}
                     ],
                 }
@@ -56,12 +57,16 @@
         },
         methods: {
             submitForm(formName) {
+                console.log(this)
+                const userContent = this.ruleForm
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        alert('submit!');
+                        const a = registryUser1(userContent)
+                        if (!a){
+                            alert('注册失败，请稍后重试')
+                        }
                     } else {
-                        console.log('error submit!!');
-                        return false;
+                        alert('请先完善注册信息')
                     }
                 });
             },
