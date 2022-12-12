@@ -23,6 +23,7 @@
             login() {
                 // 登录逻辑 调用后端api
                 // print(this.data.username)
+                this.$router.push({path: '/menu'})
             },
             registry() {
                 // 注册逻辑
