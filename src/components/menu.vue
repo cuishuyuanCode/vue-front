@@ -2,15 +2,27 @@
 
 <template>
   <el-container>
-  <el-header>Header</el-header>
-  <el-container>
-    <el-aside width="200px">Aside</el-aside>
+    <el-header>
+      <el-menu>
+        <el-menu-item index="1">处理中心</el-menu-item>
+        <el-menu-item index="2">dd中心</el-menu-item>
+        <el-menu-item index="3">ss中心</el-menu-item>
+      </el-menu>
+    </el-header>
+
+
     <el-container>
-      <el-main>Main</el-main>
-      <el-footer>Footer</el-footer>
+      <el-aside width="200px">Aside</el-aside>
+
+
+      <el-container>
+        <el-main>Main</el-main>
+        <el-footer>Footer</el-footer>
+      </el-container>
+
+
     </el-container>
   </el-container>
-</el-container>
 </template>
 
 <style>
@@ -26,7 +38,7 @@
     background-color: #D3DCE6;
     color: #333;
     text-align: center;
-    line-height: calc(100vh - 60px) ;
+    line-height: calc(100vh - 60px);
   }
 
   .el-main {
