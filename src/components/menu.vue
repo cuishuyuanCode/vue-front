@@ -29,8 +29,8 @@
 
     <el-container direction="vertical">
       <!--      <el-header style="text-align: right; font-size: 12px">-->
-      <el-header style="text-align: right; font-size: 12px;">
-        <el-menu :default-openeds="['1', '3']" style="display: flex;">
+      <el-header style="font-size: 12px;">
+        <el-menu :default-openeds="['1', '3']" style="display: flex; height: 60px; width: calc(100%);">
           <el-menu-item index="1">ddd</el-menu-item>
           <el-menu-item index="2">sss</el-menu-item>
           <!-- <el-submenu index="">
@@ -62,8 +62,8 @@
 
 
   .el-header {
-    text-align: right;
-    background-color: #B3C0D1;
+    /* text-align: right; */
+    /* background-color: #B3C0D1; */
     color: #333;
     line-height: 60px;
   }
