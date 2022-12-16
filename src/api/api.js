@@ -30,3 +30,20 @@ export function registryUser1(userContent) {
       return false;
     });
 }
+
+
+
+export function login(userContent) {
+  Axios.post('/api/registryUser',{
+    name: userContent.username,
+    password: userContent.password,
+    sex: userContent.sex
+  }
+)
+    .then(function (resp) {
+      console.log('是否注册成功:',resp)
+    })
+    .catch(function (err) {
+      return false;
+    });
+}
