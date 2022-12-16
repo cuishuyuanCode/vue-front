@@ -14,10 +14,10 @@
         <!-- <div class="login-btn">
                   <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
               </div> -->
-        <el-button type="primary" plain>登录</el-button>
+        <el-button type="primary" plain @click="loginCheck(dd)">登录</el-button>
         <el-button type="success" plain>注册</el-button>
-        <div>
-          <el-switch v-model="isAdmin" active-text="是否是管理员" inactive-text="按年付费"></el-switch>
+        <div style="padding-top: 20px">
+          <el-switch v-model="isAdmin" inactive-text="管理员身份"></el-switch>
         </div>
       </el-form>
     </div>
@@ -73,6 +73,9 @@ export default {
         }
       });
     }
+  },
+  loginCheck(){
+    console.log('dd')
   }
 }
 </script>
