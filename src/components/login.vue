@@ -1,80 +1,104 @@
 <template>
-
-  <div class="login-container">
-    <h2>试验课程预约登录</h2>
-    <input type="text" placeholder="用户名" v-model="username">
-    <input type="password" placeholder="密码" v-model="password">
-    <div>
-      <button @click="login">登录</button>
-      <button @click="registry">注册</button>
-    </div>
+  <div class="login-wrap">
+      
+      <div class="ms-login">
+          <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm">
+          <div class="ms-title">后台管理系统</div>
+              <el-form-item prop="username">
+                  <el-input v-model="ruleForm.username" placeholder="username"></el-input>
+              </el-form-item>
+              <el-form-item prop="password">
+                  <el-input type="password" placeholder="password" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')"></el-input>
+              </el-form-item>
+              <div class="login-btn">
+                  <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+              </div>
+          </el-form>
+      </div>
   </div>
-
 </template>
+
 <script>
-    export default {
-        data() {
-            return {
-                username: '',
-                password: ''
-            }
-        },
-        methods: {
-            login() {
-                // 登录逻辑 调用后端api
-                // print(this.data.username)
-                this.$router.push({path: '/menu'})
-            },
-            registry() {
-                // 注册逻辑
-                this.$router.push({path: '/register'})
-            }
-        }
-    }
+  import {login} from '../api/api.js'
+  export default {
+      data: function(){
+          return {
+              ruleForm: {
+                  username: '',
+                  password: ''
+              },
+              rules: {
+                  username: [
+                      { required: true, message: '请输入用户名', trigger: 'blur' }
+                  ],
+                  password: [
+                      { required: true, message: '请输入密码', trigger: 'blur' }
+                  ]
+              }
+          }
+      },
+      methods: {
+          submitForm(formName) {
+              const self = this;
+              self.$refs[formName].validate((valid) => {
+                  if (valid) {
+                      var qs = require('qs');
+                      var params = qs.stringify({
+                          username: self.ruleForm.username,
+                          password: self.ruleForm.password
+                      });
+                      login(params).then(result => {
+                          if (result.status) {
+                              sessionStorage.setItem('login_username',self.ruleForm.username);
+                              sessionStorage.setItem('token',result.data.token);
+                              sessionStorage.setItem('meuns',qs.stringify(result.data.meuns));
+                              sessionStorage.setItem('routers',result.data.routers);
+                              self.$router.push('/home');
+                          } else {
+                              self.$message.error(response.data.message);
+                          }
+                      }).catch(function (error) {
+                          console.log(error);
+                      });
+                  } else {
+                      console.log('error submit!!');
+                      return false;
+                  }
+              });
+          }
+      }
+  }
 </script>
+
 <style scoped>
-  .login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    /* background-image:url(../assets/school.png); */
-    background: linear-gradient(to right, #00ddff, #008cff);
-    color: #fff;
+  .login-wrap{
+      width:100%;
+      height:40%;
   }
-
-  .login-container h2 {
-    /* color: rgb(79, 54, 54); */
-    font-size: 2rem;
-    margin-bottom: 1rem;
+  .ms-title{
+      margin: -30px auto 40px auto;
+      text-align: center;
+      font-size:30px;
+      color: #505458;
   }
-
-  .login-container input {
-    width: 300px;
-    height: 40px;
-    padding: 0 10px;
-    margin-bottom: 1rem;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  .ms-login{
+      position: absolute;
+      left:50%;
+      top:50%;
+      width:300px;
+      height:160px;
+      margin:-150px 0 0 -190px;
+      padding:40px;
+      border-radius: 5px;
+      background: #fff;
+      box-shadow: 0 0 25px #cac6c6;
+      /* background: red; */
   }
-
-  .login-container button {
-    width: 100px;
-    height: 40px;
-    padding: 0 10px;
-    margin-bottom: 1rem;
-    border: none;
-    border-radius: 5px;
-    background: #fff;
-    color: #000;
-    font-size: 1.2rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  .login-btn{
+      text-align: center;
   }
-
-  .login-container button:hover {
-    cursor: pointer;
+  .login-btn button{
+      width:100%;
+      height:36px;
   }
 </style>
