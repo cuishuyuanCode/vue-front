@@ -30,8 +30,9 @@
     <el-container direction="vertical">
       <!--      <el-header style="text-align: right; font-size: 12px">-->
       <el-header style="text-align: right; font-size: 12px;">
-        <el-menu :default-openeds="['1', '3']">
+        <el-menu :default-openeds="['1', '3']" style="display: flex;">
           <el-menu-item index="1">ddd</el-menu-item>
+          <el-menu-item index="2">sss</el-menu-item>
           <!-- <el-submenu index="">
             <el-menu-item index=""></el-menu-item>
           </el-submenu>
