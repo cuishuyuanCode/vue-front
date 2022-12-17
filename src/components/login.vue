@@ -1,9 +1,8 @@
 <template>
   <div class="login-wrap">
-
     <div class="ms-login">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm">
-        <div class="ms-title">后台管理系统</div>
+        <div class="login-title">课程预约管理系统</div>
         <el-form-item prop="username">
           <el-input v-model="ruleForm.username" placeholder="请输入用户名"></el-input>
         </el-form-item>
@@ -11,11 +10,8 @@
           <el-input type="password" placeholder="请输入密码" v-model="ruleForm.password"
             @keyup.enter.native="submitForm('ruleForm')"></el-input>
         </el-form-item>
-        <!-- <div class="login-btn">
-                  <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
-              </div> -->
-        <el-button type="primary" plain @click="loginCheck(dd)">登录</el-button>
-        <el-button type="success" plain>注册</el-button>
+        <el-button type="primary" plain @click="submitForm('ruleForm')">登录</el-button>
+        <el-button type="success" plain @click="registryUser()">注册</el-button>
         <div style="padding-top: 20px">
           <el-switch v-model="isAdmin" inactive-text="管理员身份"></el-switch>
         </div>
@@ -46,6 +42,7 @@ export default {
   },
   methods: {
     submitForm(formName) {
+      console.log('consolog',formName)
       const self = this;
       self.$refs[formName].validate((valid) => {
         if (valid) {
@@ -72,39 +69,43 @@ export default {
           return false;
         }
       });
+    },
+    registryUser(){
+      this.$router.push('/register')
     }
-  },
-  loginCheck(){
-    console.log('dd')
   }
-}
+  }
 </script>
 
 <style scoped>
 .login-wrap {
+  background: url('../assets/login.jpg');
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 40%;
-}
-
-.ms-title {
-  margin: -30px auto 40px auto;
-  text-align: center;
-  font-size: 30px;
-  color: #505458;
+  height: 100vh;
 }
 
 .ms-login {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 300px;
-  height: 240px;
-  margin: -150px 0 0 -190px;
-  padding: 40px;
-  border-radius: 5px;
-  background: #fff;
-  box-shadow: 0 0 25px #cac6c6;
+  height: 45%;
+  width: 500px;
+  background: white;
+  border-radius: 30px;
+  /* box-shadow: 0 0 25px #cac6c6; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.login-title{
+  text-align: center;
+  font-size: 30px;
+  padding-bottom: 30px;
+  /* background-color: red; */
+}
+
 
 .login-btn {
   text-align: center;
