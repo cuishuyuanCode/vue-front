@@ -42,7 +42,6 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      console.log('consolog',formName)
       const self = this;
       self.$refs[formName].validate((valid) => {
         if (valid) {
