@@ -43,31 +43,32 @@ export default {
   methods: {
     submitForm(formName) {
       const self = this;
-      self.$refs[formName].validate((valid) => {
-        if (valid) {
-          var qs = require('qs');
-          var params = qs.stringify({
-            username: self.ruleForm.username,
-            password: self.ruleForm.password
-          });
-          login(params).then(result => {
-            if (result.status) {
-              sessionStorage.setItem('login_username', self.ruleForm.username);
-              sessionStorage.setItem('token', result.data.token);
-              sessionStorage.setItem('meuns', qs.stringify(result.data.meuns));
-              sessionStorage.setItem('routers', result.data.routers);
-              self.$router.push('/home');
-            } else {
-              self.$message.error(response.data.message);
-            }
-          }).catch(function (error) {
-            console.log(error);
-          });
-        } else {
-          console.log('error submit!!');
-          return false;
-        }
-      });
+      this.$router.push('/home')
+      // self.$refs[formName].validate((valid) => {
+      //   if (valid) {
+      //     var qs = require('qs');
+      //     var params = qs.stringify({
+      //       username: self.ruleForm.username,
+      //       password: self.ruleForm.password
+      //     });
+      //     login(params).then(result => {
+      //       if (result.status) {
+      //         sessionStorage.setItem('login_username', self.ruleForm.username);
+      //         sessionStorage.setItem('token', result.data.token);
+      //         sessionStorage.setItem('meuns', qs.stringify(result.data.meuns));
+      //         sessionStorage.setItem('routers', result.data.routers);
+      //         self.$router.push('/home');
+      //       } else {
+      //         self.$message.error(response.data.message);
+      //       }
+      //     }).catch(function (error) {
+      //       console.log(error);
+      //     });
+      //   } else {
+      //     console.log('error submit!!');
+      //     return false;
+      //   }
+      // });
     },
     registryUser(){
       this.$router.push('/register')
