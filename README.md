@@ -5,6 +5,8 @@
 
 暂时未设计登录的token以及路径的权限验证
 
+//coding
+
 backend: ssm
 
 ## Build Setup
