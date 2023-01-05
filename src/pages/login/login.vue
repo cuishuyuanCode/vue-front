@@ -11,10 +11,10 @@
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="login">
-                Sign in
+                登录
                 </el-button>
             </el-form-item>
-            <div class="tips">用户为admin的时候，能够看到所有的权限列表，其余账号只能看到部分</div>
+            <div class="tips">管理员：admin</div>
         </el-form>
     </div>
 </template>
