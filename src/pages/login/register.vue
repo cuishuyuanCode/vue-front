@@ -1,24 +1,34 @@
 <template>
-  <div class="login-container">
-    <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="rules" ref="loginForm"
+  <div class="register-container">
+    <el-form class="register-form" autoComplete="on" :model="registerForm" :rules="registerRules" ref="registerForm"
              label-position="left">
-      <h3 class="title">课程预约管理系统</h3>
+      <h3 class="title">注册用户</h3>
       <el-form-item prop="username">
-        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="用户名"/>
+        <el-input name="username" type="text" v-model="registerForm.username" autoComplete="on" placeholder="用户名"/>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input name="password" :type="pwdType" @keyup.enter.native="login" v-model="loginForm.password"
+        <el-input name="password" type="password" @keyup.enter.native="register" v-model="registerForm.password"
                   autoComplete="on"
                   placeholder="密码"></el-input>
       </el-form-item>
+      <el-form-item prop="confirmPwd">
+        <el-input name="confirmPwd" type="password" @keyup.enter.native="register" v-model="registerForm.confirmPwd"
+                  autoComplete="on"
+                  placeholder="请确认密码"></el-input>
+      </el-form-item>
+      <el-form-item prop="phone">
+        <el-input name="phone" type="text" @keyup.enter.native="register" v-model="registerForm.phone"
+                  autoComplete="on"
+                  placeholder="手机号"></el-input>
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="login">
-          登录
+          确定
         </el-button>
       </el-form-item>
       <el-form-item>
-        <el-button type="info" style="width:100%;" :loading="loading" @click.native.prevent="register">
-          注册
+        <el-button type="info" style="width:100%;" :loading="loading" @click.native.prevent="back">
+          返回登录
         </el-button>
       </el-form-item>
     </el-form>
@@ -27,14 +37,18 @@
 
 <script>
 // import { login } from '@/api/permission'
+import {registryUser1} from "../../api/api";
+
 export default {
   data() {
     return {
-      loginForm: {
+      registerForm: {
         username: '',
-        password: ''
+        password: '',
+        confirmPwd: '',
+        phone: ''
       },
-      rules: {
+      registerRules: {
         username: [
           {required: true, message: '请输入用户名', trigger: 'blur'},
           {min: 3, max: 16, message: '长度在 3 到 16 个字符', trigger: 'blur'}
@@ -42,18 +56,21 @@ export default {
         password: [
           {required: true, message: '请输入密码', trigger: 'blur'},
           {min: 6, max: 16, message: '长度在 6 到 16 个字符', trigger: 'blur'}
-        ],
+        ]
       },
       loading: false,
       pwdType: 'password'
     }
   },
   methods: {
+    back() {
+      this.$router.push('/')
+    },
     async login() {
 
     },
     register() {
-      this.$router.push('/register')
+      registryUser1()
     }
   }
 }
@@ -65,7 +82,7 @@ $bg: #2d3a4b;
 $light_gray: #eee;
 
 /* reset element-ui css */
-.login-container {
+.register-container {
   .el-input {
     display: inline-block;
     height: 47px;
@@ -100,43 +117,19 @@ $light_gray: #eee;
 $bg: #2d3a4b;
 $dark_gray: #889aa4;
 $light_gray: #eee;
-.login-container {
+.register-container {
   position: fixed;
   height: 100%;
   width: 100%;
   background-color: $bg;
 
-  .login-form {
+  .register-form {
     position: absolute;
     left: 0;
     right: 0;
     width: 520px;
     padding: 35px 35px 15px 35px;
-    margin: 120px auto;
-  }
-
-  .tips {
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 10px;
-
-    span {
-      &:first-of-type {
-        margin-right: 16px;
-      }
-    }
-  }
-
-  .svg-container {
-    padding: 6px 5px 6px 15px;
-    color: $dark_gray;
-    vertical-align: middle;
-    width: 30px;
-    display: inline-block;
-
-    &_login {
-      font-size: 20px;
-    }
+    margin: 30px auto;
   }
 
   .title {
@@ -146,21 +139,6 @@ $light_gray: #eee;
     margin: 0px auto 40px auto;
     text-align: center;
     font-weight: bold;
-  }
-
-  .show-pwd {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    font-size: 16px;
-    color: $dark_gray;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .fontcontainer {
-    color: #889aa4;
-    padding-left: 10px;
   }
 }
 </style>
