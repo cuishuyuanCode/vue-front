@@ -105,7 +105,7 @@ export default {
     };
   },
   created() {
-    this.getCode();
+    // this.getCode();
   },
   methods: {
     getCode() {
