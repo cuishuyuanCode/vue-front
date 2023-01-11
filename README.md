@@ -1,26 +1,28 @@
-# vue-demo
-
-本项目使用Vue + Element-Ui
+## 开发
 
 
-暂时未设计登录的token以及路径的权限验证
+本项目根据RuoYi开源修改
 
-//coding
+```bash
 
-backend: ssm
-
-## Build Setup
-
-``` bash
-# install dependencies
+# 安装依赖
 npm install
 
-# serve with hot reload at localhost:8080
+# 建议不要直接使用 cnpm 安装依赖，会有各种诡异的 bug。可以通过如下操作解决 npm 下载速度慢的问题
+npm install --registry=https://registry.npmmirror.com
+
+# 启动服务
 npm run dev
+```
 
-# build for production with minification
-npm run build
+浏览器访问 http://localhost:80
 
-# build for production and view the bundle analyzer report
-npm run build --report
+## 发布
+
+```bash
+# 构建测试环境
+npm run build:stage
+
+# 构建生产环境
+npm run build:prod
 ```
